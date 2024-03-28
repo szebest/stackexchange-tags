@@ -1,4 +1,4 @@
 export type PaginatedQueryParams = {
-	pageSize: number;
-	page: number;
-}
+  pageSize: number;
+  page: number;
+};

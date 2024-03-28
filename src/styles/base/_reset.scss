@@ -1,19 +1,19 @@
 body {
-	margin: 0;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	overflow-x: hidden;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 a {
-	text-decoration: inherit;
-	color: inherit;
+  text-decoration: inherit;
+  color: inherit;
 
-	&:hover {
-		color: inherit;
-	}
+  &:hover {
+    color: inherit;
+  }
 
-	&.disabled {
-		pointer-events: none;
-	}
+  &.disabled {
+    pointer-events: none;
+  }
 }
