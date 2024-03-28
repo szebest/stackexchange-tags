@@ -1,7 +1,5 @@
 export type Tag = {
-  has_synonyms: boolean;
-  is_moderator_only: boolean;
-  is_required: boolean;
+  last_activity_date: number;
   count: number;
   name: string;
 };

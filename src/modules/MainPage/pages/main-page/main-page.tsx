@@ -1,13 +1,12 @@
 import { useState } from "react";
 
-import { Box } from "@mui/material";
-
 import { useGetTags } from "@/modules/MainPage/hooks";
 
 import {
   TagsQueryParams,
   TagsSortQueryParams,
 } from "@/modules/MainPage/models";
+import { TagsTable } from "@/modules/MainPage/components";
 
 export function MainPage() {
   const [query, setQuery] = useState<TagsQueryParams>({
@@ -18,7 +17,7 @@ export function MainPage() {
     site: "stackoverflow",
   });
 
-  const response = useGetTags(query);
+  const { data, isError, refetch } = useGetTags(query);
 
   const onPageChange = (page: number) => {
     setQuery((prev) => ({ ...prev, page }));
@@ -32,7 +31,16 @@ export function MainPage() {
     setQuery((prev) => ({ ...prev, ...sortQuery }));
   };
 
-  return <Box>main-page works!</Box>;
+  return (
+    <TagsTable
+      isError={isError}
+      data={data}
+      query={query}
+      onSortChange={onSortChange}
+      onPageChange={onPageChange}
+      refetch={refetch}
+    />
+  );
 }
 
 export default MainPage;

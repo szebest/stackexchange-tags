@@ -1,5 +1,5 @@
 export type PaginatedResponse<T> = {
-  data: T[];
+  items: T[];
   total: number;
   hasMore: boolean;
 };
