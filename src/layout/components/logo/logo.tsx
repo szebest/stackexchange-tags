@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 
-import styles from "./logo.module.scss";
+import { Typography } from "@mui/material";
 
 export function Logo() {
-  return <Link to="/" role="link" className={styles.logo}></Link>;
+  return (
+    <Link to="/" role="link">
+      <Typography variant="h6" component="div">
+        Stackexchange tags
+      </Typography>
+    </Link>
+  );
 }
 
 export default Logo;

@@ -1,9 +1,21 @@
 import { memo } from "react";
 
-import styles from "./header.module.scss";
+import { AppBar, Box, Toolbar } from "@mui/material";
+
+import { Logo } from "@/layout/components";
 
 export const Header = memo(() => {
-  return <header className={styles.header}></header>;
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed">
+        <Toolbar>
+          <Logo />
+        </Toolbar>
+      </AppBar>
+
+      <Toolbar />
+    </Box>
+  );
 });
 
 export default Header;

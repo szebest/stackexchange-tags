@@ -17,7 +17,7 @@ export function App() {
     <BrowserRouter>
       <Routes>
         <Route path="" element={<DefaultLayout />}>
-          <Route path="" element={<MainPage />}></Route>
+          <Route index element={<MainPage />}></Route>
           <Route path="*" element={<Navigate to="" replace />} />
         </Route>
 

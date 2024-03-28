@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Outlet } from "react-router-dom";
 
-import styles from "./default-layout.module.scss";
+import { Box } from "@mui/material";
 
 import { Header } from "src/layout/components";
 
@@ -14,23 +14,17 @@ export function DefaultLayout({ maxWidth = "1920px" }: DefaultLayoutProps) {
   return (
     <>
       <Header />
-      <div className={styles.container}>
+      <Box sx={{ maxWidth, margin: 1 }}>
         <main>
-          <div className={styles.pageWrapper}>
-            <div className={styles.pageWrapper__container} style={{ maxWidth }}>
-              <ErrorBoundary
-                fallback={<div>There was an error while loading the page</div>}
-              >
-                <Suspense
-                  fallback={<div style={{ width: "100%" }}>Loading...</div>}
-                >
-                  <Outlet />
-                </Suspense>
-              </ErrorBoundary>
-            </div>
-          </div>
+          <ErrorBoundary
+            fallback={<Box>There was an error while loading the page</Box>}
+          >
+            <Suspense fallback={<Box sx={{ width: "100%" }}>Loading...</Box>}>
+              <Outlet />
+            </Suspense>
+          </ErrorBoundary>
         </main>
-      </div>
+      </Box>
     </>
   );
 }
