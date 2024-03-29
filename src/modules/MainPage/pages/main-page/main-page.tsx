@@ -2,17 +2,18 @@ import { useCallback, useState } from "react";
 
 import { useGetTags } from "@/modules/MainPage/hooks";
 
+import { TagsQueryParams } from "@/modules/MainPage/models";
 import {
-  TagsQueryParams,
-  TagsSortQueryParams,
-} from "@/modules/MainPage/models";
-import { PageSize, TagsTable } from "@/modules/MainPage/components";
-import { Box } from "@mui/material";
+  PageSize,
+  TableFilter,
+  TagsTable,
+} from "@/modules/MainPage/components";
+import { Box, Divider, Paper } from "@mui/material";
 
 export function MainPage() {
   const [query, setQuery] = useState<TagsQueryParams>({
     page: 1,
-    pageSize: 15,
+    pageSize: 10,
     sort: "popular",
     order: "desc",
     site: "stackoverflow",
@@ -20,37 +21,36 @@ export function MainPage() {
 
   const { data, isFetching, isError, refetch } = useGetTags(query);
 
-  const onPageChange = useCallback(
-    (page: number) => {
-      setQuery((prev) => ({ ...prev, page }));
+  const onQueryChange = useCallback(
+    (changed: Partial<TagsQueryParams>) => {
+      setQuery((prev) => ({ ...prev, ...changed }));
     },
     [setQuery],
   );
 
   const onPageSizeChange = useCallback(
     (pageSize: number) => {
-      setQuery((prev) => ({ ...prev, page: 1, pageSize }));
+      onQueryChange({ page: 1, pageSize });
     },
-    [setQuery],
-  );
-
-  const onSortChange = useCallback(
-    (sortQuery: TagsSortQueryParams) => {
-      setQuery((prev) => ({ ...prev, ...sortQuery }));
-    },
-    [setQuery],
+    [onQueryChange],
   );
 
   return (
-    <Box sx={{ display: "grid", gap: 2 }}>
-      <PageSize pageSize={query.pageSize} onPageSizeChange={onPageSizeChange} />
+    <Box sx={{ display: "grid", gap: 1 }}>
+      <Box component={Paper} sx={{ display: "grid", gap: 2, padding: 1 }}>
+        <TableFilter query={query} handleChange={onQueryChange} />
+        <Divider variant="fullWidth" />
+        <PageSize
+          pageSize={query.pageSize}
+          onPageSizeChange={onPageSizeChange}
+        />
+      </Box>
       <TagsTable
         isFetching={isFetching}
         isError={isError}
         data={data}
         query={query}
-        onSortChange={onSortChange}
-        onPageChange={onPageChange}
+        onQueryChange={onQueryChange}
         refetch={refetch}
       />
     </Box>

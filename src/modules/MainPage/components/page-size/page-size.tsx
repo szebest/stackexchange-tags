@@ -1,5 +1,5 @@
 import { memo, useRef } from "react";
-import { Box, Button, Paper, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 export type PageSizeProps = {
   pageSize: number;
@@ -19,13 +19,11 @@ export const PageSize = memo(
 
     return (
       <Box
-        component={Paper}
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
           gap: 1,
-          padding: 1,
         }}
       >
         <TextField

@@ -26,8 +26,7 @@ export type TagsTableProps = {
   isFetching: boolean;
   data?: TagsPaginatedResponse;
   query: TagsQueryParams;
-  onSortChange?: (_: TagsSortQueryParams) => void;
-  onPageChange?: (_: number) => void;
+  onQueryChange?: (_: Partial<TagsQueryParams>) => void;
   refetch: VoidFunction;
 };
 
@@ -54,8 +53,7 @@ export function TagsTable({
   isFetching,
   data,
   query,
-  onSortChange,
-  onPageChange,
+  onQueryChange,
   refetch,
 }: TagsTableProps) {
   const { order, sort } = query;
@@ -66,7 +64,7 @@ export function TagsTable({
       order: sort === property ? (order === "asc" ? "desc" : "asc") : "asc",
     };
 
-    onSortChange?.(newSort);
+    onQueryChange?.(newSort);
   };
 
   const renderTableBody = () => {
@@ -141,7 +139,7 @@ export function TagsTable({
         count={data?.total ?? 0}
         rowsPerPage={query.pageSize}
         page={query.page - 1} // Subtract 1 because the MUI table is 0 based, and the stachexchange API is 1 based
-        onPageChange={(_, page) => onPageChange?.(page + 1)} // Add 1 because we subtraced 1 in the line before
+        onPageChange={(_, page) => onQueryChange?.({ page: page + 1 })} // Add 1 because we subtraced 1 in the line before
       />
     </Paper>
   );
