@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 import { Box, CircularProgress, Fade } from "@mui/material";
 
-import { Header } from "src/layout/components";
+import { Header } from "@/layout/components";
 
 export type DefaultLayoutProps = {
   maxWidth?: string;

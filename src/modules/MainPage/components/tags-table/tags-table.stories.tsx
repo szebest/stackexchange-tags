@@ -18,7 +18,7 @@ const generateItem = (index: number): Tag => {
   return {
     name: `test ${index}`,
     count: 10 + index,
-    last_activity_date: index % 5 > 0 ? Date.now() : undefined,
+    last_activity_date: index % 5 > 0 ? Date.now() / 1000 : undefined,
   };
 };
 
