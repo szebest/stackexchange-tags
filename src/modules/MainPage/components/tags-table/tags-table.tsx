@@ -98,7 +98,7 @@ export function TagsTable({
   return (
     <Paper sx={{ width: "100%", mb: 2, overflowX: "auto" }}>
       <TableContainer
-        sx={{ height: "calc(100dvh - 310px)", overflowY: "auto" }}
+        sx={{ maxHeight: "calc(100dvh - 310px)", overflowY: "auto" }}
       >
         <Table stickyHeader aria-labelledby="tags table">
           <TableHead
