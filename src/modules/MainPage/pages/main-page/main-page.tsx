@@ -36,7 +36,7 @@ export function MainPage() {
   );
 
   return (
-    <Box sx={{ display: "grid", gap: 1 }}>
+    <Box sx={{ display: "grid", gap: 2 }}>
       <Box component={Paper} sx={{ display: "grid", gap: 2, padding: 1 }}>
         <TableFilter query={query} handleChange={onQueryChange} />
         <Divider variant="fullWidth" />

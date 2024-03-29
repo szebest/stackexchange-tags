@@ -2,7 +2,7 @@ import { Skeleton, TableCell, TableRow } from "@mui/material";
 
 export type TableSkeletonLoaderProps = {
   rowsNumber: number;
-  variants: ("text" | "rectangular" | "rounded" | "circular")[];
+  variants: ("text" | "rectangular" | "rounded")[];
   animation?: "wave" | "pulse";
 };
 
@@ -13,7 +13,7 @@ export function TableSkeletonLoader({
 }: TableSkeletonLoaderProps) {
   return (
     <>
-      {[...Array(rowsNumber)].map((row, index) => (
+      {[...Array(rowsNumber)].map((_, index) => (
         <TableRow key={index}>
           {variants.map((variant, i) => (
             <TableCell key={i} sx={{ height: "32px" }}>
