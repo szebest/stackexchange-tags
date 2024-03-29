@@ -27,6 +27,7 @@ export const PageSize = memo(
         }}
       >
         <TextField
+          size="small"
           fullWidth
           label="Page size"
           type="number"
@@ -35,7 +36,7 @@ export const PageSize = memo(
           onChange={onChange}
         />
         <Button
-          size="large"
+          sx={{ height: "100%" }}
           color="primary"
           variant="contained"
           onClick={() =>

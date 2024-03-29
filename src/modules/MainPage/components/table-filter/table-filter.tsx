@@ -16,6 +16,7 @@ export function TableFilter({ query, handleChange }: TableFilterProps) {
     <FormControl>
       <InputLabel id="site-filter-label">Site</InputLabel>
       <Select
+        size="small"
         labelId="site-filter-label"
         id="site-filter"
         value={query.site}
