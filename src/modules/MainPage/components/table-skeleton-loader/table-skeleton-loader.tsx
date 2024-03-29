@@ -16,7 +16,7 @@ export function TableSkeletonLoader({
       {[...Array(rowsNumber)].map((row, index) => (
         <TableRow key={index}>
           {variants.map((variant, i) => (
-            <TableCell key={i}>
+            <TableCell key={i} sx={{ height: "32px" }}>
               <Skeleton animation={animation} variant={variant} />
             </TableCell>
           ))}

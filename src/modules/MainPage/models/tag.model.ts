@@ -1,5 +1,5 @@
 export type Tag = {
-  last_activity_date: number;
+  last_activity_date?: number;
   count: number;
   name: string;
 };

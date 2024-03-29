@@ -18,7 +18,7 @@ export function MainPage() {
     site: "stackoverflow",
   });
 
-  const { data, isError, refetch } = useGetTags(query);
+  const { data, isFetching, isError, refetch } = useGetTags(query);
 
   const onPageChange = useCallback(
     (page: number) => {
@@ -45,6 +45,7 @@ export function MainPage() {
     <Box sx={{ display: "grid", gap: 2 }}>
       <PageSize pageSize={query.pageSize} onPageSizeChange={onPageSizeChange} />
       <TagsTable
+        isFetching={isFetching}
         isError={isError}
         data={data}
         query={query}

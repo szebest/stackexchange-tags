@@ -1,4 +1,4 @@
-import { Box, Button, TableCell, TableRow } from "@mui/material";
+import { Box, Button, Stack, TableCell, TableRow } from "@mui/material";
 import NotInterestedIcon from "@mui/icons-material/NotInterested";
 
 export type TableErrorProps = {
@@ -10,11 +10,8 @@ export function TableError({ colSpan, refetch }: TableErrorProps) {
   return (
     <TableRow>
       <TableCell colSpan={colSpan}>
-        <Box
+        <Stack
           sx={{
-            mx: "auto",
-            display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             gap: 1,
           }}
@@ -26,7 +23,7 @@ export function TableError({ colSpan, refetch }: TableErrorProps) {
           <Button onClick={refetch} color="error" variant="contained">
             Retry
           </Button>
-        </Box>
+        </Stack>
       </TableCell>
     </TableRow>
   );

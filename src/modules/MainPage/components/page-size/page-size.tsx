@@ -24,7 +24,7 @@ export const PageSize = memo(
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          gap: 2,
+          gap: 1,
           padding: 1,
         }}
       >

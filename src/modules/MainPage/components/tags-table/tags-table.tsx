@@ -1,5 +1,5 @@
 import {
-  Box,
+  Chip,
   Paper,
   Table,
   TableBody,
@@ -23,6 +23,7 @@ import {
 
 export type TagsTableProps = {
   isError: boolean;
+  isFetching: boolean;
   data?: TagsPaginatedResponse;
   query: TagsQueryParams;
   onSortChange?: (_: TagsSortQueryParams) => void;
@@ -34,7 +35,7 @@ const headCells: TableHeadModel<TagsSortOptions>[] = [
   {
     id: "name",
     label: "Tag",
-    width: "25%",
+    width: "40%",
   },
   {
     id: "popular",
@@ -44,12 +45,13 @@ const headCells: TableHeadModel<TagsSortOptions>[] = [
   {
     id: "activity",
     label: "Last created on",
-    width: "50%",
+    width: "35%",
   },
 ];
 
 export function TagsTable({
   isError,
+  isFetching,
   data,
   query,
   onSortChange,
@@ -70,7 +72,7 @@ export function TagsTable({
   const renderTableBody = () => {
     if (isError) return <TableError colSpan={3} refetch={refetch} />;
 
-    if (!data)
+    if (isFetching || !data)
       return (
         <TableSkeletonLoader
           rowsNumber={query.pageSize}
@@ -81,52 +83,67 @@ export function TagsTable({
     return data.items.map((row) => {
       return (
         <TableRow key={row.name}>
-          <TableCell align="right">{row.name}</TableCell>
+          <TableCell align="right">
+            <Chip label={row.name} color="info" />
+          </TableCell>
           <TableCell align="right">{row.count}</TableCell>
-          <TableCell align="right">{row.last_activity_date}</TableCell>
+          <TableCell align="right">
+            {row.last_activity_date !== undefined
+              ? new Date(row.last_activity_date * 1000).toLocaleString()
+              : "—"}
+          </TableCell>
         </TableRow>
       );
     });
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Paper sx={{ width: "100%", mb: 2 }}>
-        <TableContainer sx={{ overflowX: "initial" }}>
-          <Table stickyHeader aria-labelledby="tags table">
-            <TableHead>
-              <TableRow>
-                {headCells.map((headCell) => (
-                  <TableCell
-                    sx={{ width: headCell.width }}
-                    align="right"
-                    key={headCell.id}
-                    sortDirection={sort === headCell.id ? order : false}
+    <Paper sx={{ width: "100%", mb: 2, overflowX: "auto" }}>
+      <TableContainer>
+        <Table aria-labelledby="tags table">
+          <TableHead
+            sx={{
+              "& .MuiTableCell-head": {
+                backgroundColor: "primary.main",
+                color: "common.white",
+              },
+            }}
+          >
+            <TableRow>
+              {headCells.map((headCell) => (
+                <TableCell
+                  sx={{ width: headCell.width }}
+                  align="right"
+                  key={headCell.id}
+                  sortDirection={sort === headCell.id ? order : false}
+                >
+                  <TableSortLabel
+                    active={sort === headCell.id}
+                    direction={sort === headCell.id ? order : "asc"}
+                    onClick={() => onSort(headCell.id)}
                   >
-                    <TableSortLabel
-                      active={sort === headCell.id}
-                      direction={sort === headCell.id ? order : "asc"}
-                      onClick={() => onSort(headCell.id)}
-                    >
-                      {headCell.label}
-                    </TableSortLabel>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>{renderTableBody()}</TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[]}
-          component="div"
-          count={data?.total ?? 0}
-          rowsPerPage={query.pageSize}
-          page={query.page - 1} // Subtract 1 because the MUI table is 0 based, and the stachexchange API is 1 based
-          onPageChange={(_, page) => onPageChange?.(page + 1)} // Add 1 because we subtraced 1 in the line before
-        />
-      </Paper>
-    </Box>
+                    {headCell.label}
+                  </TableSortLabel>
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody
+            sx={{ "& tr:nth-of-type(2n+1)": { backgroundColor: "grey.100" } }}
+          >
+            {renderTableBody()}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[]}
+        component="div"
+        count={data?.total ?? 0}
+        rowsPerPage={query.pageSize}
+        page={query.page - 1} // Subtract 1 because the MUI table is 0 based, and the stachexchange API is 1 based
+        onPageChange={(_, page) => onPageChange?.(page + 1)} // Add 1 because we subtraced 1 in the line before
+      />
+    </Paper>
   );
 }
 
