@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { useGetTags } from "@/modules/MainPage/hooks";
 
@@ -6,12 +6,13 @@ import {
   TagsQueryParams,
   TagsSortQueryParams,
 } from "@/modules/MainPage/models";
-import { TagsTable } from "@/modules/MainPage/components";
+import { PageSize, TagsTable } from "@/modules/MainPage/components";
+import { Box } from "@mui/material";
 
 export function MainPage() {
   const [query, setQuery] = useState<TagsQueryParams>({
     page: 1,
-    pageSize: 20,
+    pageSize: 15,
     sort: "popular",
     order: "desc",
     site: "stackoverflow",
@@ -19,27 +20,39 @@ export function MainPage() {
 
   const { data, isError, refetch } = useGetTags(query);
 
-  const onPageChange = (page: number) => {
-    setQuery((prev) => ({ ...prev, page }));
-  };
+  const onPageChange = useCallback(
+    (page: number) => {
+      setQuery((prev) => ({ ...prev, page }));
+    },
+    [setQuery],
+  );
 
-  const onPageSizeChange = (pageSize: number) => {
-    setQuery((prev) => ({ ...prev, page: 1, pageSize }));
-  };
+  const onPageSizeChange = useCallback(
+    (pageSize: number) => {
+      setQuery((prev) => ({ ...prev, page: 1, pageSize }));
+    },
+    [setQuery],
+  );
 
-  const onSortChange = (sortQuery: TagsSortQueryParams) => {
-    setQuery((prev) => ({ ...prev, ...sortQuery }));
-  };
+  const onSortChange = useCallback(
+    (sortQuery: TagsSortQueryParams) => {
+      setQuery((prev) => ({ ...prev, ...sortQuery }));
+    },
+    [setQuery],
+  );
 
   return (
-    <TagsTable
-      isError={isError}
-      data={data}
-      query={query}
-      onSortChange={onSortChange}
-      onPageChange={onPageChange}
-      refetch={refetch}
-    />
+    <Box sx={{ display: "grid", gap: 2 }}>
+      <PageSize pageSize={query.pageSize} onPageSizeChange={onPageSizeChange} />
+      <TagsTable
+        isError={isError}
+        data={data}
+        query={query}
+        onSortChange={onSortChange}
+        onPageChange={onPageChange}
+        refetch={refetch}
+      />
+    </Box>
   );
 }
 
