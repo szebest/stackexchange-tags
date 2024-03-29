@@ -1,24 +1,20 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 
-import { useGetTags } from "@/modules/MainPage/hooks";
+import { Box, Divider, Paper } from "@mui/material";
 
-import { TagsQueryParams } from "@/modules/MainPage/models";
 import {
   PageSize,
   TableFilter,
   TagsTable,
 } from "@/modules/MainPage/components";
-import { Box, Divider, Paper } from "@mui/material";
+
+import { useQueryParams } from "@/modules/MainPage/providers";
+import { useGetTags } from "@/modules/MainPage/hooks";
+
+import { TagsQueryParams } from "@/modules/MainPage/models";
 
 export function MainPage() {
-  const [query, setQuery] = useState<TagsQueryParams>({
-    page: 1,
-    pageSize: 10,
-    sort: "popular",
-    order: "desc",
-    site: "stackoverflow",
-  });
-
+  const { query, setQuery } = useQueryParams();
   const { data, isFetching, isError, refetch } = useGetTags(query);
 
   const onQueryChange = useCallback(

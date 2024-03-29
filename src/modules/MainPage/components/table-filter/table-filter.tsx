@@ -2,8 +2,8 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 import {
   TagsQueryParams,
-  TagsSortSites,
-  tagsSortSitesArray,
+  TagsFilterSites,
+  tagsFilterSitesArray,
 } from "@/modules/MainPage/models";
 
 export type TableFilterProps = {
@@ -21,10 +21,10 @@ export function TableFilter({ query, handleChange }: TableFilterProps) {
         value={query.site}
         label="Site"
         onChange={(e) =>
-          handleChange?.({ site: e.target.value as TagsSortSites })
+          handleChange?.({ site: e.target.value as TagsFilterSites })
         }
       >
-        {tagsSortSitesArray.map((x) => (
+        {tagsFilterSitesArray.map((x) => (
           <MenuItem key={x} value={x}>
             {x}
           </MenuItem>

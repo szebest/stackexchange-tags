@@ -13,7 +13,7 @@ export const PageSize = memo(
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.valueAsNumber;
 
-      if (value <= 0) e.target.value = "0";
+      if (value <= 1) e.target.value = "1";
       if (value >= 100) e.target.value = "100";
     };
 

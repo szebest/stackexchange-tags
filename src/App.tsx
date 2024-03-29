@@ -6,6 +6,7 @@ import { ThemeProvider } from "@emotion/react";
 
 import { queryClient } from "@/lib";
 import { defaultTheme } from "@/theme";
+import { QueryParamsProvider } from "@/modules/MainPage/providers";
 
 // layouts
 import { DefaultLayout } from "./layout/containers";
@@ -24,7 +25,14 @@ export function App() {
         <BrowserRouter>
           <Routes>
             <Route path="" element={<DefaultLayout />}>
-              <Route index element={<MainPage />}></Route>
+              <Route
+                index
+                element={
+                  <QueryParamsProvider>
+                    <MainPage />
+                  </QueryParamsProvider>
+                }
+              ></Route>
               <Route path="*" element={<Navigate to="" replace />} />
             </Route>
 

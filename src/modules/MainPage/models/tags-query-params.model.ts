@@ -1,8 +1,10 @@
 import { PaginatedQueryParams, SortQueryParams } from "@/models";
 
-export type TagsSortOptions = "popular" | "activity" | "name";
+export const tagsSortOptionsArray = ["popular", "activity", "name"] as const;
 
-export const tagsSortSitesArray = [
+export type TagsSortOptions = (typeof tagsSortOptionsArray)[number];
+
+export const tagsFilterSitesArray = [
   "stackoverflow",
   "serverfault",
   "superuser",
@@ -12,11 +14,11 @@ export const tagsSortSitesArray = [
   "gaming",
 ] as const;
 
-export type TagsSortSites = (typeof tagsSortSitesArray)[number];
+export type TagsFilterSites = (typeof tagsFilterSitesArray)[number];
 
 export type TagsSortQueryParams = SortQueryParams<TagsSortOptions>;
 
 export type TagsQueryParams = PaginatedQueryParams &
   TagsSortQueryParams & {
-    site: TagsSortSites;
+    site: TagsFilterSites;
   };
