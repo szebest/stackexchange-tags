@@ -39,12 +39,12 @@ const headCells: TableHeadModel<TagsSortOptions>[] = [
   {
     id: "popular",
     label: "Count",
-    width: "25%",
+    width: "20%",
   },
   {
     id: "activity",
-    label: "Last created on",
-    width: "35%",
+    label: "Last created",
+    width: "40%",
   },
 ];
 
@@ -97,8 +97,10 @@ export function TagsTable({
 
   return (
     <Paper sx={{ width: "100%", mb: 2, overflowX: "auto" }}>
-      <TableContainer>
-        <Table aria-labelledby="tags table">
+      <TableContainer
+        sx={{ height: "calc(100dvh - 345px)", overflowY: "auto" }}
+      >
+        <Table stickyHeader aria-labelledby="tags table">
           <TableHead
             sx={{
               "& .MuiTableCell-head": {

@@ -1,8 +1,4 @@
-import {
-  createSearchParams,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import {
   PropsWithChildren,
   createContext,
@@ -33,12 +29,11 @@ const QueryParamsContext = createContext<QueryParamsContextValue | undefined>(
 export type QueryParamsProviderProps = PropsWithChildren;
 
 export const QueryParamsProvider = ({ children }: QueryParamsProviderProps) => {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const parseQuery = (): TagsQueryParams => {
     const DEFAULT_PAGE = 1;
-    const DEFAULT_PAGE_SIZE = 10;
+    const DEFAULT_PAGE_SIZE = 20;
     const DEFAULT_SORT = "popular";
     const DEFAULT_ORDER = "desc";
     const DEFAULT_SITE = "stackoverflow";
