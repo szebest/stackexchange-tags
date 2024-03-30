@@ -65,13 +65,18 @@ export const QueryParamsProvider = ({ children }: QueryParamsProviderProps) => {
   );
 
   useEffect(() => {
-    setSearchParams((searchParams) => {
-      Object.entries(query).forEach(([key, value]) => {
-        searchParams.set(key, value.toString());
-      });
+    setSearchParams(
+      (searchParams) => {
+        Object.entries(query).forEach(([key, value]) => {
+          searchParams.set(key, value.toString());
+        });
 
-      return searchParams;
-    });
+        return searchParams;
+      },
+      {
+        replace: true,
+      },
+    );
   }, [query]);
 
   return (
