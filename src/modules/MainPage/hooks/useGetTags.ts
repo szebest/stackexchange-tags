@@ -1,11 +1,13 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { keepPreviousData } from "@tanstack/react-query";
 
 import { getPaginatedTags } from "@/modules/MainPage/api";
+
+import { useAppQuery } from "@/hooks";
 
 import { TagsQueryParams } from "@/modules/MainPage/models";
 
 export const useGetTags = (query: TagsQueryParams) => {
-  const response = useQuery({
+  const response = useAppQuery({
     queryKey: ["tags", query],
     queryFn: async ({ signal }) => getPaginatedTags(query, signal),
     placeholderData: keepPreviousData,
