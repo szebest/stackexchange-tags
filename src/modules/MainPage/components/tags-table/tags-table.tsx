@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  Box,
   Chip,
   Divider,
   Paper,
@@ -88,8 +87,9 @@ export function TagsTable({
     return data.items.map((row) => {
       return (
         <TableRow
+          role="link"
           target={"_blank"}
-          component={siteUrl ? Link : Box}
+          component={siteUrl ? Link : TableRow}
           to={`${siteUrl}questions/tagged/${row.name}`}
           key={row.name}
         >
