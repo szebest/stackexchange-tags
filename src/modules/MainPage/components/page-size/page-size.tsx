@@ -17,35 +17,41 @@ export const PageSize = memo(
       if (value >= 100) e.target.value = "100";
     };
 
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      ref.current && onPageSizeChange?.(ref.current.valueAsNumber);
+    };
+
     return (
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          gap: 1,
-        }}
-      >
-        <TextField
-          size="small"
-          fullWidth
-          label="Page size"
-          type="number"
-          defaultValue={pageSize}
-          inputRef={ref}
-          onChange={onChange}
-        />
-        <Button
-          sx={{ height: "100%" }}
-          color="primary"
-          variant="contained"
-          onClick={() =>
-            ref.current && onPageSizeChange?.(ref.current.valueAsNumber)
-          }
+      <form onSubmit={onSubmit}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            gap: 1,
+          }}
         >
-          Apply
-        </Button>
-      </Box>
+          <TextField
+            size="small"
+            fullWidth
+            label="Page size"
+            type="number"
+            defaultValue={pageSize}
+            inputRef={ref}
+            onChange={onChange}
+          />
+          <Button
+            sx={{ height: "100%" }}
+            color="primary"
+            variant="contained"
+            type="submit"
+          >
+            Apply
+          </Button>
+        </Box>
+      </form>
     );
   },
 );
