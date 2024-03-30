@@ -90,9 +90,16 @@ export function TagsTable({
     return data.items.map((row) => {
       return (
         <TableRow
+          tabIndex={0}
           key={row.name}
           sx={{ cursor: siteUrl ? "pointer" : "inherit" }}
           role="link"
+          onKeyDown={(event) => {
+            if (event.keyCode === 13) {
+              siteUrl &&
+                goToExternalSite(`${siteUrl}questions/tagged/${row.name}`);
+            }
+          }}
           onClick={() =>
             siteUrl &&
             goToExternalSite(`${siteUrl}questions/tagged/${row.name}`)
