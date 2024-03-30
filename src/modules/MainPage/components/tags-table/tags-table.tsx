@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   Chip,
   Divider,
@@ -71,6 +70,10 @@ export function TagsTable({
     onQueryChange?.(updatedQuery);
   };
 
+  const goToExternalSite = (url: string) => {
+    window.open(url, "_blank", "noreferrer");
+  };
+
   const renderTableBody = () => {
     if (isError) return <TableError colSpan={3} refetch={refetch} />;
 
@@ -87,11 +90,13 @@ export function TagsTable({
     return data.items.map((row) => {
       return (
         <TableRow
-          role="link"
-          target={"_blank"}
-          component={siteUrl ? Link : TableRow}
-          to={`${siteUrl}questions/tagged/${row.name}`}
           key={row.name}
+          sx={{ cursor: siteUrl ? "pointer" : "inherit" }}
+          role="link"
+          onClick={() =>
+            siteUrl &&
+            goToExternalSite(`${siteUrl}questions/tagged/${row.name}`)
+          }
         >
           <TableCell align="right">
             <Chip label={row.name} color="info" />
