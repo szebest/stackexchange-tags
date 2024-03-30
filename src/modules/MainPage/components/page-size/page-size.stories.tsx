@@ -7,7 +7,7 @@ const meta: Meta<PageSizeProps> = {
   component: PageSize,
   argTypes: {
     pageSize: { name: "initialPageSize" },
-    onPageSizeChange: { action: "onPageSizeChange" },
+    onQueryChange: { action: "onQueryChange" },
   },
 };
 

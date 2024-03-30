@@ -24,22 +24,12 @@ export function MainPage() {
     [setQuery],
   );
 
-  const onPageSizeChange = useCallback(
-    (pageSize: number) => {
-      onQueryChange({ page: 1, pageSize });
-    },
-    [onQueryChange],
-  );
-
   return (
     <Box sx={{ display: "grid", gap: 2 }}>
       <Box component={Paper} sx={{ display: "grid", gap: 2, padding: 1 }}>
         <TableFilter query={query} handleChange={onQueryChange} />
         <Divider variant="fullWidth" />
-        <PageSize
-          pageSize={query.pageSize}
-          onPageSizeChange={onPageSizeChange}
-        />
+        <PageSize pageSize={query.pageSize} onQueryChange={onQueryChange} />
       </Box>
       <TagsTable
         isFetching={isFetching}

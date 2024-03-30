@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Box,
   Chip,
@@ -15,15 +16,14 @@ import {
 
 import { TableSkeletonLoader, TableError } from "@/modules/MainPage/components";
 
+import { siteNameToUrl } from "@/modules/MainPage/helpers";
+
 import { TableHeadModel } from "@/models";
 import {
   TagsPaginatedResponse,
   TagsQueryParams,
   TagsSortOptions,
-  TagsSortQueryParams,
 } from "@/modules/MainPage/models";
-import { Link } from "react-router-dom";
-import { siteNameToUrl } from "@/modules/MainPage/helpers";
 
 export type TagsTableProps = {
   isError: boolean;
@@ -63,12 +63,13 @@ export function TagsTable({
   const { order, sort } = query;
 
   const onSort = (property: TagsSortOptions) => {
-    const newSort: TagsSortQueryParams = {
+    const updatedQuery: Partial<TagsQueryParams> = {
+      page: 1,
       sort: property,
       order: sort === property ? (order === "asc" ? "desc" : "asc") : "asc",
     };
 
-    onQueryChange?.(newSort);
+    onQueryChange?.(updatedQuery);
   };
 
   const renderTableBody = () => {
