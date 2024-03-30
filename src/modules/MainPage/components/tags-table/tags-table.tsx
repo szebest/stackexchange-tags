@@ -20,6 +20,8 @@ import {
   TagsSortOptions,
   TagsSortQueryParams,
 } from "@/modules/MainPage/models";
+import { Link } from "react-router-dom";
+import { siteNameToUrl } from "@/modules/MainPage/helpers";
 
 export type TagsTableProps = {
   isError: boolean;
@@ -78,9 +80,20 @@ export function TagsTable({
         />
       );
 
+    const siteUrl = siteNameToUrl(query.site);
+
     return data.items.map((row) => {
       return (
-        <TableRow key={row.name}>
+        <TableRow
+          target={siteUrl ? "_blank" : "_self"}
+          component={Link}
+          to={
+            siteUrl
+              ? `${siteUrl}questions/tagged/${row.name}`
+              : window.location.pathname
+          }
+          key={row.name}
+        >
           <TableCell align="right">
             <Chip label={row.name} color="info" />
           </TableCell>

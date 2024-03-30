@@ -3,16 +3,22 @@ import { Meta, StoryFn } from "@storybook/react";
 import { TagsTable, TagsTableProps } from "..";
 
 import { Tag, TagsQueryParams } from "@/modules/MainPage/models";
+import { BrowserRouter } from "react-router-dom";
 
 const meta: Meta<TagsTableProps> = {
   title: "Main Page/Tags table",
   component: TagsTable,
   argTypes: {
     onQueryChange: { action: "onQueryChange" },
+    refetch: { action: "refetch" },
   },
 };
 
-const Template: StoryFn<TagsTableProps> = (args) => <TagsTable {...args} />;
+const Template: StoryFn<TagsTableProps> = (args) => (
+  <BrowserRouter>
+    <TagsTable {...args} />
+  </BrowserRouter>
+);
 
 const generateItem = (index: number): Tag => {
   return {
