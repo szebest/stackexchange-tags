@@ -145,6 +145,9 @@ export function TagsTable({
               ".MuiTableRow-root:nth-of-type(2n+1)": {
                 backgroundColor: "grey.100",
               },
+              ".MuiTableRow-root:focus-visible": {
+                backgroundColor: "grey.400",
+              },
             }}
           >
             {renderTableBody()}
