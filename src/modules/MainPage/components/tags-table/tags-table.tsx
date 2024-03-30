@@ -142,7 +142,11 @@ export function TagsTable({
             </TableRow>
           </TableHead>
           <TableBody
-            sx={{ "& tr:nth-of-type(2n+1)": { backgroundColor: "grey.100" } }}
+            sx={{
+              ".MuiTableRow-root:nth-of-type(2n+1)": {
+                backgroundColor: "grey.100",
+              },
+            }}
           >
             {renderTableBody()}
           </TableBody>
