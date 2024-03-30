@@ -41,7 +41,7 @@ export const defaultTheme = createTheme({
     },
     text: {
       primary: "#212121",
-      secondary: "#757575",
+      secondary: "#dedede",
       disabled: "#bdbdbd",
     },
   },
