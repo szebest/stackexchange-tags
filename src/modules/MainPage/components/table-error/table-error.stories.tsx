@@ -13,7 +13,7 @@ import {
 type ArgType = TableErrorProps & { numberOfColumns: number };
 
 const meta: Meta<ArgType> = {
-  title: "Main Page/Table error",
+  title: "Modules/Main Page/Components/Table error",
   component: TableError,
   argTypes: {
     refetch: { action: "refetch" },

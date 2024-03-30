@@ -3,7 +3,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { PageSize, PageSizeProps } from "..";
 
 const meta: Meta<PageSizeProps> = {
-  title: "Main Page/Page size",
+  title: "Modules/Main Page/Components/Page size",
   component: PageSize,
   argTypes: {
     pageSize: { name: "initialPageSize" },

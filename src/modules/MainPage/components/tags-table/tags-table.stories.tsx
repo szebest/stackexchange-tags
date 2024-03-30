@@ -1,12 +1,12 @@
 import { Meta, StoryFn } from "@storybook/react";
+import { BrowserRouter } from "react-router-dom";
 
 import { TagsTable, TagsTableProps } from "..";
 
 import { Tag, TagsQueryParams } from "@/modules/MainPage/models";
-import { BrowserRouter } from "react-router-dom";
 
 const meta: Meta<TagsTableProps> = {
-  title: "Main Page/Tags table",
+  title: "Modules/Main Page/Components/Tags table",
   component: TagsTable,
   argTypes: {
     onQueryChange: { action: "onQueryChange" },

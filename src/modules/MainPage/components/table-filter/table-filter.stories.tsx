@@ -5,7 +5,7 @@ import { TableFilter, TableFilterProps } from "..";
 import { TagsQueryParams } from "@/modules/MainPage/models";
 
 const meta: Meta<TableFilterProps> = {
-  title: "Main Page/Table filter",
+  title: "Modules/Main Page/Components/Table filter",
   component: TableFilter,
   argTypes: {
     handleChange: { action: "handleChange" },

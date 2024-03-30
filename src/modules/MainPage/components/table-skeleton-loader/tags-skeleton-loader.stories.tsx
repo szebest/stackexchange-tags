@@ -4,7 +4,7 @@ import { Table, TableBody, TableContainer } from "@mui/material";
 import { TableSkeletonLoader, TableSkeletonLoaderProps } from "..";
 
 const meta: Meta<TableSkeletonLoaderProps> = {
-  title: "Main Page/Table skeleton loader",
+  title: "Modules/Main Page/Components/Table skeleton loader",
   component: TableSkeletonLoader,
 };
 
