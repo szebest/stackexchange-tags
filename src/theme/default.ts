@@ -26,9 +26,9 @@ export const defaultTheme = createTheme({
       light: "#ffb74d",
     },
     info: {
-      main: "#2196f3",
-      dark: "#1976d2",
-      light: "#64b5f6",
+      main: "#1a7ab8",
+      dark: "#13548e",
+      light: "#4a8fc9",
     },
     success: {
       main: "#4caf50",
