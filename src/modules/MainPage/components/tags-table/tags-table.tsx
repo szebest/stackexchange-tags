@@ -1,4 +1,5 @@
 import {
+  Box,
   Chip,
   Divider,
   Paper,
@@ -86,13 +87,9 @@ export function TagsTable({
     return data.items.map((row) => {
       return (
         <TableRow
-          target={siteUrl ? "_blank" : "_self"}
-          component={Link}
-          to={
-            siteUrl
-              ? `${siteUrl}questions/tagged/${row.name}`
-              : window.location.pathname
-          }
+          target={"_blank"}
+          component={siteUrl ? Link : Box}
+          to={`${siteUrl}questions/tagged/${row.name}`}
           key={row.name}
         >
           <TableCell align="right">
