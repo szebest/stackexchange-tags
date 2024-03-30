@@ -1,5 +1,6 @@
 import {
   Chip,
+  Divider,
   Paper,
   Table,
   TableBody,
@@ -152,6 +153,7 @@ export function TagsTable({
           </TableBody>
         </Table>
       </TableContainer>
+      <Divider variant="fullWidth" />
       <TablePagination
         rowsPerPageOptions={[]}
         component="div"
