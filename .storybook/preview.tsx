@@ -1,6 +1,6 @@
 import React from "react";
 import type { Preview } from "@storybook/react";
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 import { defaultTheme } from "../src/theme";
 
@@ -19,6 +19,8 @@ const preview: Preview = {
 
 export const withMuiTheme = (Story) => (
   <ThemeProvider theme={defaultTheme}>
+    <CssBaseline />
+
     <Story />
   </ThemeProvider>
 );

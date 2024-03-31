@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createStyles, createTheme } from "@mui/material";
 
 export const defaultTheme = createTheme({
   typography: {
@@ -43,6 +43,41 @@ export const defaultTheme = createTheme({
       primary: "#212121",
       secondary: "#888888",
       disabled: "#bdbdbd",
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        a: {
+          textDecoration: "inherit",
+          color: "inherit",
+          "&:hover": {
+            color: "inherit",
+          },
+          "&.disabled": {
+            pointerEvents: "none",
+          },
+        },
+      },
+    },
+    MuiTableSortLabel: {
+      styleOverrides: {
+        root: {
+          "&, &.Mui-active, &:hover, &:focus": {
+            color: "inherit",
+          },
+          "&:focus-visible": {
+            outline: "1px solid white",
+          },
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          fontVariantNumeric: "tabular-nums",
+        },
+      },
     },
   },
 });

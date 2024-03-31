@@ -3,6 +3,7 @@ import { Navigate } from "react-router";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
 
 import { queryClient } from "@/lib";
 import { defaultTheme } from "@/theme";
@@ -22,6 +23,8 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={defaultTheme}>
+        <CssBaseline />
+
         <BrowserRouter>
           <Routes>
             <Route path="" element={<DefaultLayout />}>
