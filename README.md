@@ -16,7 +16,7 @@ User is able to pick one of the stackexchange sites to get the data from (i.e St
  - MUI
  - TypeScript
  - React Query v5
- - React router v6
+ - React router dom v6
  - Axios
  - Storybook
  - ESLint
