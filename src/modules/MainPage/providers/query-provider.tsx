@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -20,11 +21,18 @@ import { SortOrderDirecttions, sortOrderDirecttionsArray } from "@/models";
 type QueryParamsContextValue = {
   query: TagsQueryParams;
   setQuery: React.Dispatch<React.SetStateAction<TagsQueryParams>>;
+  resetQuery: VoidFunction;
 };
 
 const QueryParamsContext = createContext<QueryParamsContextValue | undefined>(
   undefined,
 );
+
+const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_SIZE = 20;
+const DEFAULT_SORT = "popular";
+const DEFAULT_ORDER = "desc";
+const DEFAULT_SITE = "stackoverflow";
 
 export type QueryParamsProviderProps = PropsWithChildren;
 
@@ -32,12 +40,6 @@ export const QueryParamsProvider = ({ children }: QueryParamsProviderProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const parseQuery = (): TagsQueryParams => {
-    const DEFAULT_PAGE = 1;
-    const DEFAULT_PAGE_SIZE = 20;
-    const DEFAULT_SORT = "popular";
-    const DEFAULT_ORDER = "desc";
-    const DEFAULT_SITE = "stackoverflow";
-
     const page = +(searchParams.get("page") ?? DEFAULT_PAGE);
     const pageSize = +(searchParams.get("pageSize") ?? DEFAULT_PAGE_SIZE);
     const sort = (searchParams.get("sort") ?? DEFAULT_SORT) as TagsSortOptions;
@@ -56,12 +58,23 @@ export const QueryParamsProvider = ({ children }: QueryParamsProviderProps) => {
 
   const [query, setQuery] = useState<TagsQueryParams>(parseQuery());
 
+  const resetQuery = useCallback(() => {
+    setQuery({
+      page: DEFAULT_PAGE,
+      pageSize: DEFAULT_PAGE_SIZE,
+      sort: DEFAULT_SORT,
+      order: DEFAULT_ORDER,
+      site: DEFAULT_SITE,
+    });
+  }, [setQuery]);
+
   const ctx = useMemo(
     () => ({
       query,
       setQuery,
+      resetQuery,
     }),
-    [query],
+    [query, setQuery, resetQuery],
   );
 
   useEffect(() => {

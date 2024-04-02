@@ -125,7 +125,7 @@ export function TagsTable({
 
   return (
     <CustomTable
-      sx={{ maxHeight: "calc(100dvh - 310px)" }}
+      sx={{ maxHeight: "calc(100dvh - 363px)" }}
       header={headCells.map((headCell) => (
         <TableCell
           sx={{ width: headCell.width }}

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Box, Divider, Paper } from "@mui/material";
+import { Box, Button, Divider, Paper } from "@mui/material";
 
 import {
   PageSize,
@@ -13,7 +13,7 @@ import { useGetTags } from "@/modules/MainPage/hooks";
 import { TagsQueryParams } from "@/modules/MainPage/models";
 
 export function MainPage() {
-  const { query, setQuery } = useQueryParams();
+  const { query, setQuery, resetQuery } = useQueryParams();
   const { data, isFetching, isError, error, refetch } = useGetTags(query);
 
   const onQueryChange = useCallback(
@@ -25,6 +25,14 @@ export function MainPage() {
 
   return (
     <Box sx={{ display: "grid", gap: 2 }}>
+      <Button
+        onClick={resetQuery}
+        color="primary"
+        variant="contained"
+        sx={{ width: "max-content", m: "0 0 0 auto" }}
+      >
+        Reset query
+      </Button>
       <Box component={Paper} sx={{ display: "grid", gap: 2, padding: 1 }}>
         <TableFilter query={query} handleChange={onQueryChange} />
         <Divider variant="fullWidth" />
