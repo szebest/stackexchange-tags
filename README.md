@@ -7,4 +7,5 @@ The application allows to sort the data by:
  - popular
  - activity (last created post with given tag)
  - name
+
 User is able to pick one of the stackexchange sites to get the data from (i.e Stackoverflow, Serverfault etc).
