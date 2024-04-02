@@ -140,7 +140,7 @@ export function TagsTable({
           component="div"
           count={data?.total ?? 0}
           rowsPerPage={query.pageSize}
-          page={!isFetching ? query.page - 1 : 0} // Subtract 1 because the MUI table is 0 based, and the stachexchange API is 1 based
+          page={data?.total !== undefined ? query.page - 1 : 0} // Subtract 1 because the MUI table is 0 based, and the stachexchange API is 1 based
           onPageChange={(_, page) => onQueryChange?.({ page: page + 1 })} // Add 1 because we subtraced 1 in the line before
         />
       }
