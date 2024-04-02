@@ -9,3 +9,15 @@ The application allows to sort the data by:
  - name
 
 User is able to pick one of the stackexchange sites to get the data from (i.e Stackoverflow, Serverfault etc).
+
+## Used technologies
+
+ - React
+ - MUI
+ - TypeScript
+ - React Query v5
+ - React router v6
+ - Axios
+ - Storybook
+ - ESLint
+ - Prettier
