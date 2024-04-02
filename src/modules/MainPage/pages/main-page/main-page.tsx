@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-
 import { Box, Divider, Paper } from "@mui/material";
 
 import {
@@ -15,7 +14,7 @@ import { TagsQueryParams } from "@/modules/MainPage/models";
 
 export function MainPage() {
   const { query, setQuery } = useQueryParams();
-  const { data, isFetching, isError, refetch } = useGetTags(query);
+  const { data, isFetching, isError, error, refetch } = useGetTags(query);
 
   const onQueryChange = useCallback(
     (changed: Partial<TagsQueryParams>) => {
@@ -37,6 +36,7 @@ export function MainPage() {
       <TagsTable
         isFetching={isFetching}
         isError={isError}
+        error={error}
         data={data}
         query={query}
         onQueryChange={onQueryChange}

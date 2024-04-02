@@ -4,10 +4,14 @@ import { getPaginatedTags } from "@/modules/MainPage/api";
 
 import { useAppQuery } from "@/hooks";
 
-import { TagsQueryParams } from "@/modules/MainPage/models";
+import { AxiosErrorModel } from "@/models";
+import {
+  TagsPaginatedResponse,
+  TagsQueryParams,
+} from "@/modules/MainPage/models";
 
 export const useGetTags = (query: TagsQueryParams) => {
-  const response = useAppQuery({
+  const response = useAppQuery<TagsPaginatedResponse, AxiosErrorModel>({
     queryKey: ["tags", query],
     queryFn: async ({ signal }) => getPaginatedTags(query, signal),
     placeholderData: keepPreviousData,
