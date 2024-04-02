@@ -22,7 +22,7 @@ export function TableFilter({ query, handleChange }: TableFilterProps) {
         value={query.site}
         label="Site"
         onChange={(e) =>
-          handleChange?.({ site: e.target.value as TagsFilterSites })
+          handleChange?.({ page: 1, site: e.target.value as TagsFilterSites })
         }
       >
         {tagsFilterSitesArray.map((x) => (

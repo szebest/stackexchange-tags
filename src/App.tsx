@@ -7,6 +7,7 @@ import { CssBaseline } from "@mui/material";
 
 import { queryClient } from "@/lib";
 import { defaultTheme } from "@/theme";
+
 import { QueryParamsProvider } from "@/modules/MainPage/providers";
 
 // layouts
