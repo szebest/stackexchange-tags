@@ -29,7 +29,10 @@ export function MainPage() {
       <Box component={Paper} sx={{ display: "grid", gap: 2, padding: 1 }}>
         <TableFilter query={query} handleChange={onQueryChange} />
         <Divider variant="fullWidth" />
-        <PageSize pageSize={query.pageSize} onQueryChange={onQueryChange} />
+        <PageSize
+          defaultPageSize={query.pageSize}
+          onQueryChange={onQueryChange}
+        />
       </Box>
       <TagsTable
         isFetching={isFetching}
