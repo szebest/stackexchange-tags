@@ -46,7 +46,7 @@ Default.args = {
 export const WithError = Template.bind({});
 WithError.args = {
   colSpan: 4,
-  error: "sample error message",
+  errorMessage: "sample error message",
 };
 
 export default meta;

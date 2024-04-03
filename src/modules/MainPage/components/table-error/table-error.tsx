@@ -10,11 +10,15 @@ import NotInterestedIcon from "@mui/icons-material/NotInterested";
 
 export type TableErrorProps = {
   colSpan: number;
-  error?: string;
+  errorMessage?: string;
   refetch?: VoidFunction;
 };
 
-export function TableError({ colSpan, error, refetch }: TableErrorProps) {
+export function TableError({
+  colSpan,
+  errorMessage,
+  refetch,
+}: TableErrorProps) {
   return (
     <TableRow>
       <TableCell colSpan={colSpan}>
@@ -29,8 +33,10 @@ export function TableError({ colSpan, error, refetch }: TableErrorProps) {
             <Typography variant="body2">
               An error has occured while loading the data...
             </Typography>
-            {error && (
-              <Typography variant="body2">Error message: {error}</Typography>
+            {errorMessage && (
+              <Typography variant="body2">
+                Error message: {errorMessage}
+              </Typography>
             )}
           </Box>
           <Button onClick={refetch} color="error" variant="contained">

@@ -10,7 +10,7 @@ import { TableSkeletonLoader, TableError } from "@/modules/MainPage/components";
 
 import { siteNameToUrl } from "@/modules/MainPage/helpers";
 
-import { AxiosErrorModel, TableHeadModel } from "@/models";
+import { TableHeadModel } from "@/models";
 import {
   TagsPaginatedResponse,
   TagsQueryParams,
@@ -19,7 +19,7 @@ import {
 import { CustomTable } from "@/modules/Shared/components";
 
 export type TagsTableProps = {
-  error: AxiosErrorModel | null;
+  errorMessage?: string;
   isError: boolean;
   isFetching: boolean;
   data?: TagsPaginatedResponse;
@@ -47,7 +47,7 @@ const headCells: TableHeadModel<TagsSortOptions>[] = [
 ];
 
 export function TagsTable({
-  error,
+  errorMessage,
   isError,
   isFetching,
   data,
@@ -74,11 +74,7 @@ export function TagsTable({
   const renderTableBody = () => {
     if (isError)
       return (
-        <TableError
-          error={error?.response?.data?.error_message}
-          colSpan={3}
-          refetch={refetch}
-        />
+        <TableError errorMessage={errorMessage} colSpan={3} refetch={refetch} />
       );
 
     if (isFetching || !data)

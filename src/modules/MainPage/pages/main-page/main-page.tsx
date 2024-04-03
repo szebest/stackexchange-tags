@@ -47,7 +47,7 @@ function MainPageContent() {
       <TagsTable
         isFetching={isFetching}
         isError={isError}
-        error={error}
+        errorMessage={error?.response?.data?.error_message}
         data={data}
         query={query}
         onQueryChange={onQueryChange}
