@@ -41,7 +41,7 @@ export const defaultTheme = createTheme({
     },
     text: {
       primary: "#212121",
-      secondary: "#888888",
+      secondary: "#555555",
       disabled: "#bdbdbd",
     },
   },
@@ -63,9 +63,10 @@ export const defaultTheme = createTheme({
     MuiTableSortLabel: {
       styleOverrides: {
         root: {
-          "&, &.Mui-active, &:hover, &:focus": {
-            color: "inherit",
-          },
+          "&, &.Mui-active, &:hover, &:focus, &.Mui-active .MuiTableSortLabel-icon":
+            {
+              color: "inherit",
+            },
           "&:focus-visible": {
             outline: "1px solid white",
           },
