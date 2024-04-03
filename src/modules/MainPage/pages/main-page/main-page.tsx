@@ -7,12 +7,15 @@ import {
   TagsTable,
 } from "@/modules/MainPage/components";
 
-import { useQueryParams } from "@/modules/MainPage/providers";
+import {
+  QueryParamsProvider,
+  useQueryParams,
+} from "@/modules/MainPage/providers";
 import { useGetTags } from "@/modules/MainPage/hooks";
 
 import { TagsQueryParams } from "@/modules/MainPage/models";
 
-export function MainPage() {
+function MainPageContent() {
   const { query, setQuery, resetQuery } = useQueryParams();
   const { data, isFetching, isError, error, refetch } = useGetTags(query);
 
@@ -51,6 +54,14 @@ export function MainPage() {
         refetch={refetch}
       />
     </Box>
+  );
+}
+
+export function MainPage() {
+  return (
+    <QueryParamsProvider>
+      <MainPageContent />
+    </QueryParamsProvider>
   );
 }
 
